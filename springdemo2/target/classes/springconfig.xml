@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="student1" class="com.model.Student" scope="singleton"
+		init-method="hello" destroy-method="bye">
+		<property name="studentId" value="100"></property>
+		<property name="studentName" value="ABC"></property>
+		<property name="studentMarks" value="68"></property>
+
+
+	</bean>
+	 <bean id="student2" class="com.model.Student" scope="singleton"
+		init-method="hello" destroy-method="bye">
+		<property name="studentId" value="456"></property>
+		<property name="studentName" value="XYZ"></property>
+		<property name="studentMarks" value="75"></property>
+
+
+	</bean> 
+	<bean id="teacher" class="com.model.Teacher" scope="singleton" autowire="byType">
+	<!-- we can use autowire==byName where we need to change the object from student to student2 -->
+<!-- 	autowire==auto Connection and instead of using autowire we can use reference -->
+		
+		<property name="teacherId" value="250"></property>
+		<property name="teacherName" value="Jason Daniel"></property>
+		<property name="qualification" value="M.Phil"></property>
+		<property name="students">
+		<list>
+		<ref bean="student1"/>
+		<ref bean="student2"/>
+		<ref bean="student1"/>
+		
+		</list>
+		</property>
+
+	<!-- <property name="student" ref="student2"></property> -->
+
+
+	</bean>
+</beans>
